@@ -23,20 +23,21 @@ void RootScene::Init() {
 
 	auto Settings = [](VERTEX2DSHADER& vtx, float x, float y, float u, float v)
 		{
-			vtx.pos = VGet(x, y, 0.0f);
-			vtx.u = u;
-			vtx.v = v;
-			vtx.su = u;
-			vtx.sv = v;
+			vtx.pos = VGet(x, y, 0.0f); //座標
+			vtx.u = u; // テクスチャ座標（X軸）
+			vtx.v = v; // テクスチャ座標（Y軸）
+			vtx.su = u; // テクスチャ座標
+			vtx.sv = v; // テクスチャ座標
 			vtx.rhw = 1.0f;
-			vtx.dif = GetColorU8(255, 255, 255, 255);
-			vtx.spc = GetColorU8(0, 0, 0, 0);
+			vtx.dif = GetColorU8(255, 255, 255, 255); //拡散反射光
+			vtx.spc = GetColorU8(0, 0, 0, 0); //鏡面反射光
 		};
 
-	Settings(vertex[0], 100.0f, 100.0f, 0.0f, 0.0f);
-	Settings(vertex[1], 600.0f, 100.0f, 1.0f, 0.0f);
-	Settings(vertex[2], 100.0f, 600.0f, 0.0f, 1.0f);
-	Settings(vertex[3], 600.0f, 600.0f, 1.0f, 1.0f);
+	//頂点
+	Settings(vertex[0], 100.0f, 100.0f, 0.0f, 0.0f); //左上
+	Settings(vertex[1], 600.0f, 100.0f, 1.0f, 0.0f); //右上
+	Settings(vertex[2], 100.0f, 600.0f, 0.0f, 1.0f); //左下
+	Settings(vertex[3], 600.0f, 600.0f, 1.0f, 1.0f); //右下
 
 	vertexIndex = { 0, 1, 2, 1, 2, 3 };
 	SetUseTextureToShader(0, hImage_);
