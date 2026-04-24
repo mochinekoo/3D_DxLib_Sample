@@ -12,12 +12,19 @@ endif()
 project ("C-PlusPlus_DxLib_GameTemplate")
 
 # ソースをこのプロジェクトの実行可能ファイルに追加します。
-add_executable (C-PlusPlus_DxLib_GameTemplate "C-PlusPlus_DxLib_GameTemplate.cpp" "C-PlusPlus_DxLib_GameTemplate.h")
+add_executable (C-PlusPlus_DxLib_GameTemplate WIN32 "main.cpp" "framework.h")
 
 # ライブラリ
 target_include_directories(C-PlusPlus_DxLib_GameTemplate PUBLIC "C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
 target_link_directories(C-PlusPlus_DxLib_GameTemplate PUBLIC "C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
-link_directories("C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用")
+link_directories("C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
+target_link_libraries(C-PlusPlus_DxLib_GameTemplate PUBLIC
+    DxLib
+    winmm
+    gdi32
+    dinput8
+    dxguid
+)
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
