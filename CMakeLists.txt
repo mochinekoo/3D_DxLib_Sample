@@ -12,7 +12,13 @@ endif()
 project ("C-PlusPlus_DxLib_GameTemplate")
 
 # ソースをこのプロジェクトの実行可能ファイルに追加します。
-add_executable (C-PlusPlus_DxLib_GameTemplate WIN32 "main.cpp" "framework.h" "Manager/SceneManager.h" "Manager/SceneManager.cpp"  "Scene/BaseScene.h" "Scene/RootScene.h" "Scene/RootScene.cpp")
+add_executable (C-PlusPlus_DxLib_GameTemplate WIN32 
+    "main.cpp" "framework.h" 
+    "Manager/SceneManager.h" "Manager/SceneManager.cpp"  
+    "Scene/BaseScene.h" "Scene/RootScene.h" "Scene/RootScene.cpp" 
+    "ImGUI/imgui_impl_dx10.cpp" "ImGUI/imgui_impl_dx10.h" "ImGUI/imgui_impl_dx12.cpp" "ImGUI/imgui_impl_dx12.h" "ImGUI/imgui_impl_dx9.cpp" "ImGUI/imgui_impl_dx9.h" "ImGUI/imgui_impl_dx11.h" "ImGUI/imgui_impl_dx11.cpp" "ImGUI/imgui_impl_win32.cpp" "ImGUI/imgui_impl_win32.h"
+    "ImGUI/imconfig.h" "ImGUI/imgui.h" "ImGUI/imgui.cpp" "ImGUI/imgui_draw.cpp" "ImGUI/imgui_widgets.cpp" "ImGUI/imgui_tables.cpp" "ImGUI/imstb_rectpack.h" "ImGUI/imstb_textedit.h" "ImGUI/imstb_truetype.h" "ImGUI/imgui_demo.cpp"
+)
 
 # ライブラリ
 target_include_directories(C-PlusPlus_DxLib_GameTemplate PUBLIC "C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
@@ -24,6 +30,7 @@ target_link_libraries(C-PlusPlus_DxLib_GameTemplate PUBLIC
     gdi32
     dinput8
     dxguid
+    dxgi
 )
 
 
