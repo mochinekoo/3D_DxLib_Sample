@@ -2,6 +2,7 @@
 #include "BaseScene.h"
 #include "RootScene.h"
 #include <array>
+#include "RootScene.h"
 
 namespace {
 	std::array< VERTEX2DSHADER, 4 >	vertex;
@@ -18,8 +19,10 @@ RootScene::~RootScene() {
 }
 
 void RootScene::Init() {
+	ChangeLightTypeDir(VGet(-1.0f, 1.0f, -1.0f));
 	hShader_ = LoadPixelShader("../../../Shader/TestPixelShader.pso");
 	hImage_ = LoadGraph("../../../Shader/TestTexture.png");
+	hModel_ = MV1LoadModel("../../../Shader/iii.mv1");
 
 	auto Settings = [](VERTEX2DSHADER& vtx, float x, float y, float u, float v)
 		{
@@ -40,12 +43,49 @@ void RootScene::Init() {
 	Settings(vertex[3], 600.0f, 600.0f, 1.0f, 1.0f); //右下
 
 	vertexIndex = { 0, 1, 2, 1, 2, 3 };
-	SetUseTextureToShader(0, hImage_);
 	SetUsePixelShader(hShader_);
+	SetUseTextureToShader(0, hImage_);
+
+	int matNum = MV1GetMaterialNum(hModel_);
+	
+
+	static int result = 0;
+	result = MV1GetMaterialDifMapTexture(hModel_, 0);
+	result = MV1SetTextureGraphHandle(hModel_, 0, hImage_, FALSE);
 }
 
 void RootScene::Update() {
 	sceneCounter_++;
+
+	static VECTOR vector = GetCameraPosition();
+	static VECTOR target = GetCameraTarget();
+
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		vector.y += 10;
+		target.y += 10;
+	}
+	if (CheckHitKey(KEY_INPUT_LSHIFT)) {
+		vector.y -= 10;
+		target.y -= 10;
+	}
+	if (CheckHitKey(KEY_INPUT_W)) {
+		vector.z -= 10;
+		target.z -= 10;
+	}
+	if (CheckHitKey(KEY_INPUT_S)) {
+		vector.z += 10;
+		target.z += 10;
+	}
+	if (CheckHitKey(KEY_INPUT_A)) {
+		vector.x -= 10;
+		target.x -= 10;
+	}
+	if (CheckHitKey(KEY_INPUT_D)) {
+		vector.x += 10;
+		target.x += 10;
+	}
+
+	SetCameraPositionAndTarget_UpVecY(vector, target);
 }
 
 void RootScene::Draw() {
@@ -53,6 +93,7 @@ void RootScene::Draw() {
 	static int result = 0;
 	SetTextureAddressMode(DX_TEXADDRESS_CLAMP);
 	result = DrawPolygonIndexed2DToShader(vertex.data(), 4, vertexIndex.data(), 2);
+	MV1DrawModel(hModel_);
 #endif 
 }
 

@@ -6,6 +6,7 @@ class RootScene : public BaseScene {
 private:
 	int hShader_;
 	int hImage_;
+	int hModel_;
 	VERTEX2DSHADER Vert[6];
 protected:
 public:
