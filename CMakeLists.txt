@@ -12,7 +12,7 @@ endif()
 project ("C-PlusPlus_DxLib_GameTemplate")
 
 # ソースをこのプロジェクトの実行可能ファイルに追加します。
-add_executable (C-PlusPlus_DxLib_GameTemplate WIN32 
+add_executable (3D_DxLib_Sample WIN32 
     "main.cpp" "framework.h" 
     "Manager/SceneManager.h" "Manager/SceneManager.cpp"  
     "Scene/BaseScene.h" "Scene/RootScene.h" "Scene/RootScene.cpp" 
@@ -21,10 +21,10 @@ add_executable (C-PlusPlus_DxLib_GameTemplate WIN32
     "Library/Vector.hpp" "Library/Location.hpp" "Library/Matrix.hpp" )
 
 # ライブラリ
-target_include_directories(C-PlusPlus_DxLib_GameTemplate PUBLIC "C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
-target_link_directories(C-PlusPlus_DxLib_GameTemplate PUBLIC "C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
+target_include_directories(3D_DxLib_Sample PUBLIC "C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
+target_link_directories(3D_DxLib_Sample PUBLIC "C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
 link_directories("C:/ProgramData/DxLib_VC/プロジェクトに追加すべきファイル_VC用/")
-target_link_libraries(C-PlusPlus_DxLib_GameTemplate PUBLIC
+target_link_libraries(3D_DxLib_Sample PUBLIC
     DxLib
     winmm
     gdi32
@@ -35,7 +35,7 @@ target_link_libraries(C-PlusPlus_DxLib_GameTemplate PUBLIC
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET C-PlusPlus_DxLib_GameTemplate PROPERTY CXX_STANDARD 20)
+  set_property(TARGET 3D_DxLib_Sample PROPERTY CXX_STANDARD 20)
 endif()
 
 # TODO: テストを追加し、必要な場合は、ターゲットをインストールします。
